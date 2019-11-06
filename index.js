@@ -479,7 +479,7 @@ app.get('/nearbyPlaces', (req, res) => {
       } else {
         response.forEach((interestArr) => {
           for (let i = 0; i < interestArr.length; i += 1) {
-            if (i > 4) break;
+            if (i > 3) break;
             filteredRes.push(interestArr[i]);
           }
         });
@@ -494,7 +494,7 @@ app.get('/nearbyPlaces', (req, res) => {
 app.get('/nearbyPlacesByCategory', (req, res) => {
   Promise.all(getNearbyPlaces(req.query.location, req.query.category))
     .then((result) => {
-      const filteredRes = result[0].slice(0, 3);
+      const filteredRes = result[0].slice(0, 12);
       res.status(200).send(filteredRes);
     })
     .catch(err => console.error(err));
